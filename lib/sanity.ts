@@ -26,6 +26,81 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
+// 이미지 최적화 헬퍼 함수들
+
+/**
+ * 썸네일 이미지 URL 생성 (작은 크기, 빠른 로딩)
+ * @param source - Sanity 이미지 소스
+ * @param width - 너비 (기본값: 400px)
+ * @param quality - 품질 (기본값: 75)
+ */
+export function getThumbnailUrl(
+  source: SanityImageSource,
+  width: number = 400,
+  quality: number = 75
+) {
+  return urlFor(source)
+    .width(width)
+    .quality(quality)
+    .auto('format')
+    .fit('max')
+    .url();
+}
+
+/**
+ * 고해상도 이미지 URL 생성 (상세 페이지용)
+ * @param source - Sanity 이미지 소스
+ * @param width - 최대 너비 (기본값: 1920px)
+ * @param quality - 품질 (기본값: 90)
+ */
+export function getHighResUrl(
+  source: SanityImageSource,
+  width: number = 1920,
+  quality: number = 90
+) {
+  return urlFor(source)
+    .width(width)
+    .quality(quality)
+    .auto('format')
+    .url();
+}
+
+/**
+ * 반응형 이미지 srcSet 생성
+ * @param source - Sanity 이미지 소스
+ * @param widths - 반응형 너비 배열
+ * @param quality - 품질 (기본값: 80)
+ */
+export function getResponsiveSrcSet(
+  source: SanityImageSource,
+  widths: number[] = [400, 800, 1200, 1920],
+  quality: number = 80
+) {
+  return widths
+    .map((width) => {
+      const url = urlFor(source)
+        .width(width)
+        .quality(quality)
+        .auto('format')
+        .url();
+      return `${url} ${width}w`;
+    })
+    .join(', ');
+}
+
+/**
+ * 블러 플레이스홀더 생성 (로딩 중 표시)
+ * @param source - Sanity 이미지 소스
+ */
+export function getBlurPlaceholder(source: SanityImageSource) {
+  return urlFor(source)
+    .width(20)
+    .quality(20)
+    .blur(50)
+    .auto('format')
+    .url();
+}
+
 // GROQ 쿼리 헬퍼 함수들
 
 /**
