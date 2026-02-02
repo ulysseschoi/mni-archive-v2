@@ -31,7 +31,7 @@ export default function Lightbox({
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape");
+      document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
