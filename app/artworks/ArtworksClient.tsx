@@ -25,10 +25,30 @@ export default function ArtworksClient({
   usingSanity,
 }: ArtworksClientProps) {
   const [mounted, setMounted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Get unique categories
+  const categories = [
+    "all",
+    ...Array.from(new Set(artworks.map((a) => a.category).filter(Boolean))),
+  ];
+
+  // Filter artworks
+  const filteredArtworks = artworks.filter((artwork) => {
+    const matchesSearch =
+      artwork.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      artwork.description?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "all" || artwork.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -81,6 +101,80 @@ export default function ArtworksClient({
               )}
             </div>
           </div>
+
+          {/* Search and Filter Section */}
+          <motion.div
+            initial={mounted ? { opacity: 0, y: 20 } : false}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-8 space-y-4"
+          >
+            {/* Search Bar */}
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search artworks..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 pl-12 text-white placeholder-white/50 backdrop-blur-sm transition-all focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-white/20"
+              />
+              <svg
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/50"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 transition-colors hover:text-white"
+                >
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`rounded-full px-4 py-2 text-sm font-light tracking-wide transition-all ${
+                    selectedCategory === category
+                      ? "bg-white text-black"
+                      : "border border-white/30 text-white hover:border-white/50 hover:bg-white/10"
+                  }`}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            {/* Results Count */}
+            <p className="text-sm text-white/50">
+              {filteredArtworks.length} {filteredArtworks.length === 1 ? "artwork" : "artworks"} found
+            </p>
+          </motion.div>
         </div>
       </motion.header>
 
@@ -92,7 +186,7 @@ export default function ArtworksClient({
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {artworks.map((artwork, index) => {
+            {filteredArtworks.map((artwork, index) => {
               const slug =
                 typeof artwork.slug === "string"
                   ? artwork.slug
@@ -118,15 +212,41 @@ export default function ArtworksClient({
         </motion.div>
 
         {/* Empty State Message */}
-        {artworks.length === 0 && (
+        {filteredArtworks.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="py-20 text-center"
           >
+            <svg
+              className="mx-auto mb-4 h-16 w-16 text-white/20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
             <p className="text-lg text-gray-500">
-              No artworks yet. Check back soon!
+              {searchQuery || selectedCategory !== "all"
+                ? "No artworks match your search criteria."
+                : "No artworks yet. Check back soon!"}
             </p>
+            {(searchQuery || selectedCategory !== "all") && (
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("all");
+                }}
+                className="mt-4 rounded-full border border-white/30 px-6 py-2 text-sm transition-colors hover:bg-white/10"
+              >
+                Clear filters
+              </button>
+            )}
           </motion.div>
         )}
       </section>

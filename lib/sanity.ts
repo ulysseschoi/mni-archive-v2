@@ -4,7 +4,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 // Sanity 프로젝트 설정
 export const sanityConfig = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'dummy-project-id',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
@@ -16,7 +16,7 @@ export const client = createClient({
   dataset: sanityConfig.dataset,
   apiVersion: sanityConfig.apiVersion,
   useCdn: sanityConfig.useCdn,
-  token: process.env.SANITY_API_TOKEN,
+  token: process.env.SANITY_API_TOKEN || undefined,
 });
 
 // 이미지 URL 빌더
