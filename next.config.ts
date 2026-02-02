@@ -4,6 +4,15 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.genspark.ai',
+        pathname: '/api/files/**',
+      },
+    ],
+  },
   // Allow cross-origin requests from sandbox preview URLs
   async headers() {
     return [

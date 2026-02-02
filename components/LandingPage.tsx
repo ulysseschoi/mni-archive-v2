@@ -2,6 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,7 +98,7 @@ export default function LandingPage() {
             This marks the beginning of the MNI Archive brand journey.
           </motion.p>
 
-          {/* Coming Soon Badge */}
+          {/* Coming Soon Badge - Changed to Explore Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -105,11 +107,96 @@ export default function LandingPage() {
             whileHover={{ scale: 1.05 }}
             className="inline-block"
           >
-            <div className="border border-white px-8 py-3 text-sm sm:text-base tracking-widest font-light hover:bg-white hover:text-black transition-all duration-300">
-              COMING SOON
-            </div>
+            <Link href="/artworks">
+              <div className="border border-white px-8 py-3 text-sm sm:text-base tracking-widest font-light hover:bg-white hover:text-black transition-all duration-300 cursor-pointer">
+                EXPLORE ARTWORKS
+              </div>
+            </Link>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Featured Artworks Section */}
+      <section className="px-6 sm:px-8 md:px-12 py-20 border-t border-white/10">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-light mb-4">
+              Featured Works
+            </h2>
+            <p className="text-gray-400 font-light">
+              A glimpse into the chaotic creativity
+            </p>
+          </motion.div>
+
+          {/* Artworks Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                title: "Chaotic Dreams",
+                slug: "chaotic-dreams",
+                image: "/mni-artwork-sample.png",
+              },
+              {
+                title: "Black Briar Skater",
+                slug: "black-briar-skater",
+                image: "/mni-artwork-sample.png",
+              },
+              {
+                title: "Curious Cat",
+                slug: "curious-cat",
+                image: "/mni-artwork-sample.png",
+              },
+            ].map((artwork, index) => (
+              <motion.div
+                key={artwork.slug}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                <Link href={`/artworks/${artwork.slug}`}>
+                  <div className="relative aspect-square overflow-hidden bg-gray-900 border border-white/10 hover:border-white/30 transition-all duration-300">
+                    <Image
+                      src={artwork.image}
+                      alt={artwork.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <h3 className="text-xl font-light">{artwork.title}</h3>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View All Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <Link href="/artworks">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="border border-white px-8 py-3 text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+              >
+                VIEW ALL ARTWORKS
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
       </section>
 
       {/* Footer */}
