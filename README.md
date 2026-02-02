@@ -36,7 +36,7 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ### 🏠 Core Pages
 - ✅ **Landing Page** - Hero section with scroll animations
-- ✅ **Artworks Archive** (/artworks) - Grid view with search/filter/pagination
+- ✅ **Artworks Archive** (/artworks) - 5 real Meenoi artworks with search/filter/pagination
 - ✅ **Music Archive** (/music) - 6 tracks with cover images
 - ✅ **Videos Archive** (/videos) - 6 videos with thumbnails
 - ✅ **Writings Archive** (/writings) - 6 articles with excerpts
@@ -199,7 +199,8 @@ pm2 delete mni-archive-v2    # Remove from PM2
 - coverImage, publishedAt, category, tags
 
 ### Storage Services
-- **Current**: Mock data (6 items each)
+- **Current**: Real Meenoi artworks (5 pieces) + Mock data for Music/Videos/Writings
+- **Artworks**: Using actual Genspark API image URLs
 - **Ready**: Sanity CMS integration (automatic fallback)
 - **Future**: Cloudflare D1/KV/R2 for edge storage
 
@@ -333,12 +334,13 @@ This is a personal archive project. For questions or suggestions, please open an
 ---
 
 **Last Updated**: February 2, 2026  
-**Version**: 2.1.0  
-**Status**: ✅ Production Live on Cloudflare Pages
+**Version**: 2.2.0  
+**Status**: ✅ Production Live with Real Meenoi Artworks
 
 **Production URL**: https://mni-archive-v2.pages.dev
 
 **Key Achievements**:
+- ✅ 5 real Meenoi artworks deployed
 - ✅ 5/5 core pages deployed to production
 - ✅ Search/Filter/Pagination (Artworks)
 - ✅ Lightbox image gallery
@@ -348,10 +350,17 @@ This is a personal archive project. For questions or suggestions, please open an
 - ✅ Framer Motion animations
 - ✅ All pages returning 200 OK
 
+**Real Artworks**:
+1. **B의 집** (B's House) - Doodle
+2. **고양이 친구** (Cat Friend) - Doodle
+3. **스케이트보드 타는 친구** (Black Briar Skater) - Character
+4. **열린 상자** (Open Box) - Sketch
+5. **형상의 미로** (Shape Maze) - Illustration
+
 **Current Deployment**:
 - Platform: Cloudflare Pages
 - Branch: `minimal-deploy`
 - Build: Static Export (Next.js 16)
 - Status: ✅ Active
 
-**Next Phase**: Add detail pages for individual content items 🚀
+**Next Phase**: Add detail pages & more Meenoi content 🚀
