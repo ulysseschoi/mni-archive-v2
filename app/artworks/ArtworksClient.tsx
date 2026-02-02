@@ -21,7 +21,7 @@ const mockArtworks = [
     _id: "1",
     title: "B의 집",
     slug: { current: "b-house" },
-    image: "https://www.genspark.ai/api/files/s/5cNVQar2",
+    image: "/artworks/b-house.png",
     description:
       "삼각 지붕의 집 안에 자리한 'B'의 매력적인 모습. 심플하면서도 재미있는 그림이에요.",
     category: "doodle",
@@ -32,7 +32,7 @@ const mockArtworks = [
     _id: "2",
     title: "고양이 친구",
     slug: { current: "cat-friend" },
-    image: "https://www.genspark.ai/api/files/s/VVI9frn6",
+    image: "/artworks/cat-friend.png",
     description:
       "웃는 얼굴의 고양이 같은 동물이에요. 기분 좋고 발랄한 분위기를 느껴보세요.",
     category: "doodle",
@@ -43,7 +43,7 @@ const mockArtworks = [
     _id: "3",
     title: "스케이트보드 타는 친구",
     slug: { current: "black-briar-skater" },
-    image: "https://www.genspark.ai/api/files/s/vjgc9jng",
+    image: "/artworks/black-briar-skater.png",
     description:
       "스케이트보드를 타고 자유를 만끽하는 막대기 인간이에요. 'Black briar'라는 글씨가 인상적이에요.",
     category: "character",
@@ -54,7 +54,7 @@ const mockArtworks = [
     _id: "4",
     title: "열린 상자",
     slug: { current: "open-box" },
-    image: "https://www.genspark.ai/api/files/s/GGUund5D",
+    image: "/artworks/open-box.png",
     description:
       "복잡한 무언가가 펼쳐진 열린 상자입니다. 비밀과 신비로움이 가득해요.",
     category: "sketch",
@@ -65,7 +65,7 @@ const mockArtworks = [
     _id: "5",
     title: "형상의 미로",
     slug: { current: "shape-maze" },
-    image: "https://www.genspark.ai/api/files/s/7QN2u8k5",
+    image: "/artworks/shape-maze.png",
     description:
       "다양한 기하학적 모양과 심볼로 가득한 격자무늬입니다. 질서와 패턴이 느껴져요.",
     category: "illustration",
