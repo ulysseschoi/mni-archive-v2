@@ -4,9 +4,13 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ## 🌐 Live Demo
 
-**Production URL**: https://3000-ie7ghbqy55dwsfazfpe0l-c07dda5e.sandbox.novita.ai
+**Production URL**: https://mni-archive-v2.pages.dev
 
-**Deployment Guide**: See [CLOUDFLARE_DEPLOY.md](./CLOUDFLARE_DEPLOY.md) for production deployment
+**GitHub Repository**: https://github.com/ulysseschoi/mni-archive-v2
+
+**Branch**: `minimal-deploy` (Production)
+
+**Deployment Guide**: See [CLOUDFLARE_DEPLOY.md](./CLOUDFLARE_DEPLOY.md) for deployment details
 
 ## 🎨 Design Philosophy
 
@@ -32,11 +36,11 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ### 🏠 Core Pages
 - ✅ **Landing Page** - Hero section with scroll animations
-- ✅ **Artworks Archive** (/artworks) - Full CRUD with 6 sample items
-- ✅ **Music Archive** (/music) - Tracks with lyrics and duration
-- ✅ **Videos Archive** (/videos) - Video player with thumbnails
-- ✅ **Writings Archive** (/writings) - Blog posts and essays
-- ✅ **Detail Pages** - Dynamic routing for all content types
+- ✅ **Artworks Archive** (/artworks) - Grid view with search/filter/pagination
+- ✅ **Music Archive** (/music) - 6 tracks with cover images
+- ✅ **Videos Archive** (/videos) - 6 videos with thumbnails
+- ✅ **Writings Archive** (/writings) - 6 articles with excerpts
+- ⏳ **Detail Pages** - Coming soon (dynamic routing)
 
 ### 🎯 Advanced Features
 - ✅ **Global Navigation** - Fixed top bar with responsive design
@@ -54,20 +58,19 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 ## 📋 Functional Entry URIs
 
 ### Main Routes
-- `/` - Landing page with featured artworks
+- `/` - Landing page
 - `/artworks` - Artworks grid with search/filter/pagination
-- `/artworks/[slug]` - Individual artwork detail page
-- `/music` - Music tracks list
-- `/music/[slug]` - Track detail with lyrics
-- `/videos` - Video gallery
-- `/videos/[slug]` - Video player page
-- `/writings` - Blog posts list
-- `/writings/[slug]` - Full article view
+- `/music` - Music tracks list (6 items)
+- `/videos` - Video gallery (6 items)
+- `/writings` - Blog posts list (6 items)
 
 ### Query Parameters (Artworks)
 - `/artworks?category=doodle` - Filter by category
 - `/artworks?search=chaos` - Search query
 - `/artworks?page=2` - Pagination
+
+### Note
+Detail pages (`/artworks/[slug]`, `/music/[slug]`, etc.) are planned for future implementation.
 
 ## 📁 Project Structure
 
@@ -76,19 +79,15 @@ mni-archive-v2/
 ├── app/                    # Next.js App Router
 │   ├── artworks/          # Artwork pages
 │   │   ├── page.tsx       # Server component with SEO
-│   │   ├── ArtworksClient.tsx  # Client component with search/filter
-│   │   └── [slug]/        # Detail pages
-│   ├── music/             # Music pages (Server + Client)
-│   │   ├── page.tsx       # Server component with SEO
-│   │   └── MusicPageClient.tsx
-│   ├── videos/            # Video pages (Server + Client)
-│   │   ├── page.tsx       # Server component with SEO
-│   │   └── VideosPageClient.tsx
-│   ├── writings/          # Writing pages (Server + Client)
-│   │   ├── page.tsx       # Server component with SEO
-│   │   └── WritingsPageClient.tsx
-│   ├── layout.tsx         # Root layout with Navigation + SEO
-│   ├── page.tsx           # Home page with SEO metadata
+│   │   └── ArtworksClient.tsx  # Client component with search/filter
+│   ├── music/             # Music pages
+│   │   └── page.tsx       # Client component with grid layout
+│   ├── videos/            # Video pages
+│   │   └── page.tsx       # Client component with video cards
+│   ├── writings/          # Writing pages
+│   │   └── page.tsx       # Client component with article cards
+│   ├── layout.tsx         # Root layout with Navigation
+│   ├── page.tsx           # Home page
 │   └── globals.css        # Global styles
 ├── components/            # Reusable components
 │   ├── Navigation.tsx     # Fixed top nav
@@ -97,7 +96,7 @@ mni-archive-v2/
 │   ├── MusicCard.tsx      # Music track card
 │   ├── VideoCard.tsx      # Video thumbnail card
 │   ├── WritingCard.tsx    # Blog post card
-│   ├── Lightbox.tsx       # Image gallery viewer
+│   └── Lightbox.tsx       # Image gallery viewer
 │   └── Button.tsx         # Reusable button
 ├── lib/
 │   ├── sanity.ts          # Sanity client + GROQ + Image optimization
@@ -279,12 +278,13 @@ git push origin main
 
 ## 🚧 Not Yet Implemented
 
-- [ ] Search/Filter for Music, Videos, Writings pages
+- [ ] **Detail Pages** - Dynamic routes for individual items (`/artworks/[slug]`, `/music/[slug]`, etc.)
+- [ ] Search/Filter for Music, Videos, Writings pages (currently only Artworks)
 - [ ] Real-time sync with Sanity webhooks
 - [ ] Advanced search (fuzzy matching, multiple keywords)
 - [ ] Sorting options (date, title, popularity)
-- [ ] User authentication
-- [ ] Admin panel
+- [ ] User authentication & authorization
+- [ ] Admin panel for content management
 - [ ] Comments system
 - [ ] Social sharing buttons
 - [ ] RSS feed
@@ -293,15 +293,15 @@ git push origin main
 
 ## 🎯 Recommended Next Steps
 
-1. ✅ **SEO Optimization** - Meta tags, Open Graph ✓ DONE
-2. ✅ **Image Optimization** - Sanity Image Pipeline ✓ DONE
-3. ✅ **Cloudflare Pages Deployment** - Static export ready ✓ DONE
-4. **Add More Content** - Create real artworks, music, videos
-5. **Connect Sanity Studio** - Real CMS content management
-6. **Search/Filter for Music/Videos/Writings** - Extend Artworks pattern
-7. **Custom Domain** - Configure custom domain on Cloudflare
-8. **Analytics** - Add Google Analytics or Cloudflare Web Analytics
-9. **Performance Tuning** - Implement blur placeholders, lazy loading
+1. ✅ **Cloudflare Pages Deployment** - Production live! ✓ DONE
+2. ✅ **Core Pages** - All 5 pages with mock data ✓ DONE
+3. ✅ **Search/Filter/Pagination** - Artworks page ✓ DONE
+4. ✅ **Lightbox Gallery** - Full-screen image viewer ✓ DONE
+5. **Add Detail Pages** - Implement dynamic routes for each content type
+6. **Connect Sanity Studio** - Real CMS content management
+7. **Search/Filter for Music/Videos/Writings** - Extend Artworks pattern
+8. **Custom Domain** - Configure custom domain on Cloudflare
+9. **Analytics** - Add Cloudflare Web Analytics
 10. **Google Search Console** - Submit sitemap and verify
 
 ## 📝 User Guide
@@ -334,17 +334,24 @@ This is a personal archive project. For questions or suggestions, please open an
 
 **Last Updated**: February 2, 2026  
 **Version**: 2.1.0  
-**Status**: ✅ Production Ready with SEO & Image Optimization
+**Status**: ✅ Production Live on Cloudflare Pages
+
+**Production URL**: https://mni-archive-v2.pages.dev
 
 **Key Achievements**:
-- ✅ 5/5 core pages with full functionality
+- ✅ 5/5 core pages deployed to production
 - ✅ Search/Filter/Pagination (Artworks)
 - ✅ Lightbox image gallery
-- ✅ Comprehensive SEO (Open Graph, Twitter Card)
-- ✅ Sanity Image Pipeline optimization
-- ✅ Static export for Cloudflare Pages
-- ✅ Mobile responsive with hamburger menu
+- ✅ All card components (Artwork, Music, Video, Writing)
+- ✅ Static export successfully deployed
+- ✅ Mobile responsive with fixed navigation
 - ✅ Framer Motion animations
-- ✅ PM2 process management
+- ✅ All pages returning 200 OK
 
-**Deployment Ready**: See [CLOUDFLARE_DEPLOY.md](./CLOUDFLARE_DEPLOY.md) for production deployment 🚀
+**Current Deployment**:
+- Platform: Cloudflare Pages
+- Branch: `minimal-deploy`
+- Build: Static Export (Next.js 16)
+- Status: ✅ Active
+
+**Next Phase**: Add detail pages for individual content items 🚀
