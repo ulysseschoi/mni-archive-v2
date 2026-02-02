@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import ArtworkCard from "@/components/ArtworkCard";
+import { useState, useEffect } from "react";
 
 // Mock data using the sample image
 const mockArtworks = [
@@ -68,12 +69,18 @@ const mockArtworks = [
 ];
 
 export default function ArtworksPage() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={mounted ? { opacity: 0, y: -20 } : false}
+        animate={mounted ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
         className="border-b border-white/10"
       >
@@ -82,24 +89,24 @@ export default function ArtworksPage() {
             <div>
               <motion.a
                 href="/"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={mounted ? { opacity: 0, x: -20 } : false}
+                animate={mounted ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-sm tracking-widest hover:text-gray-400 transition-colors"
               >
                 ← BACK TO HOME
               </motion.a>
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={mounted ? { opacity: 0, y: 20 } : false}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-wide mt-6 mb-4"
               >
                 Artworks
               </motion.h1>
               <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={mounted ? { opacity: 0 } : false}
+                animate={mounted ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-gray-400 text-lg font-light"
               >
@@ -113,8 +120,8 @@ export default function ArtworksPage() {
       {/* Artworks Grid */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-16">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={mounted ? { opacity: 0 } : false}
+          animate={mounted ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

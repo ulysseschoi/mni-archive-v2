@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 // Mock data
 const mockArtworks: Record<string, any> = {
@@ -54,8 +55,13 @@ const mockArtworks: Record<string, any> = {
 export default function ArtworkDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const slug = params.slug as string;
   const artwork = mockArtworks[slug];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (!artwork) {
     return (
@@ -77,8 +83,8 @@ export default function ArtworkDetailPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
       <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={mounted ? { opacity: 0, y: -20 } : false}
+        animate={mounted ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
         className="border-b border-white/10"
       >
@@ -97,8 +103,8 @@ export default function ArtworkDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={mounted ? { opacity: 0, x: -50 } : false}
+            animate={mounted ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="relative aspect-square"
           >
@@ -115,16 +121,16 @@ export default function ArtworkDetailPage() {
 
           {/* Details */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={mounted ? { opacity: 0, x: 50 } : false}
+            animate={mounted ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col justify-center"
           >
             {/* Category Badge */}
             {artwork.category && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={mounted ? { opacity: 0, y: 20 } : false}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="inline-block mb-6"
               >
@@ -136,8 +142,8 @@ export default function ArtworkDetailPage() {
 
             {/* Title */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={mounted ? { opacity: 0, y: 20 } : false}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl sm:text-5xl md:text-6xl font-light tracking-wide mb-6"
             >
@@ -146,8 +152,8 @@ export default function ArtworkDetailPage() {
 
             {/* Date */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={mounted ? { opacity: 0 } : false}
+              animate={mounted ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-sm text-gray-500 tracking-wider mb-8"
             >
@@ -160,8 +166,8 @@ export default function ArtworkDetailPage() {
 
             {/* Description */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={mounted ? { opacity: 0, y: 20 } : false}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
               className="space-y-4"
             >
@@ -172,8 +178,8 @@ export default function ArtworkDetailPage() {
 
             {/* Actions */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={mounted ? { opacity: 0, y: 20 } : false}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-12 flex gap-4"
             >

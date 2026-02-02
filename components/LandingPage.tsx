@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -15,23 +17,27 @@ export default function LandingPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div ref={containerRef} className="bg-black text-white">
       {/* Hero Section */}
       <motion.section
-        style={{ opacity, scale }}
+        style={mounted ? { opacity, scale } : {}}
         className="min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 md:px-12"
       >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={mounted ? { opacity: 0, y: 20 } : false}
+          animate={mounted ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl"
         >
           {/* Logo/Brand */}
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={mounted ? { opacity: 0, y: -20 } : false}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wider mb-12 uppercase"
           >
@@ -40,8 +46,8 @@ export default function LandingPage() {
 
           {/* Main Tagline */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={mounted ? { opacity: 0 } : false}
+            animate={mounted ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed mb-8"
           >
