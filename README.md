@@ -1,6 +1,10 @@
 # mni archive v2
 
-A minimalist Next.js 14 archive project with a pure black and white aesthetic.
+A minimalist Next.js 14 archive project with a pure black and white aesthetic, inspired by [mniarchive.pages.dev](https://mniarchive.pages.dev).
+
+## 🌐 Live Demo
+
+**Production URL**: https://3000-ie7ghbqy55dwsfazfpe0l-c07dda5e.sandbox.novita.ai
 
 ## 🎨 Design Philosophy
 
@@ -8,13 +12,16 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic.
 - **Text**: #FFFFFF (Pure White)  
 - **Font**: Inter / Helvetica Neue
 - **Style**: Minimalist, Clean, Modern
+- **Animations**: Smooth scroll-based interactions with Framer Motion
 
 ## 🚀 Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
 - **Linting**: ESLint + Prettier
+- **Process Manager**: PM2
 
 ## 📁 Project Structure
 
@@ -22,15 +29,16 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic.
 mni-archive-v2/
 ├── app/              # Next.js App Router pages
 │   ├── layout.tsx    # Root layout with global styles
-│   ├── page.tsx      # Home page
-│   └── globals.css   # Global CSS with Tailwind
+│   ├── page.tsx      # Home page (uses LandingPage component)
+│   └── globals.css   # Global CSS with Tailwind v4
 ├── components/       # Reusable React components
+│   ├── LandingPage.tsx  # Main landing page with animations
 │   └── Button.tsx    # Sample button component
 ├── lib/              # Utility functions and helpers
 │   └── utils.ts      # Common utilities
 ├── types/            # TypeScript type definitions
 │   └── index.ts      # Shared types
-├── styles/           # Additional styles (if needed)
+├── ecosystem.config.cjs  # PM2 configuration
 └── public/           # Static assets
 ```
 
@@ -42,8 +50,15 @@ npm install
 ```
 
 ### Run Development Server
+
+**Using npm:**
 ```bash
 npm run dev
+```
+
+**Using PM2 (recommended for sandbox):**
+```bash
+pm2 start ecosystem.config.cjs
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the result.
@@ -52,6 +67,15 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 ```bash
 npm run build
 npm run start
+```
+
+### PM2 Commands
+```bash
+pm2 list                     # List all processes
+pm2 logs mni-archive-v2     # View logs
+pm2 restart mni-archive-v2  # Restart the app
+pm2 stop mni-archive-v2     # Stop the app
+pm2 delete mni-archive-v2   # Remove from PM2
 ```
 
 ### Format Code
@@ -68,37 +92,55 @@ npm run lint
 
 - ✅ Next.js 14 with App Router
 - ✅ TypeScript for type safety
-- ✅ Tailwind CSS for styling
+- ✅ Tailwind CSS v4 for styling
+- ✅ Framer Motion for smooth animations
 - ✅ ESLint + Prettier for code quality
 - ✅ Minimalist black & white theme
 - ✅ Inter font from Google Fonts
-- ✅ Clean folder structure
+- ✅ Landing page matching mniarchive.pages.dev design
+- ✅ Scroll-based animations and interactions
+- ✅ Fully responsive design
+- ✅ PM2 process management
 
 ## 🎯 Current Status
 
 **Completed Features:**
-- Project structure setup
-- Basic routing with App Router
-- Global styling with Tailwind CSS
-- TypeScript configuration
-- ESLint + Prettier setup
-- Minimal homepage with "mni archive" text
+- ✅ Project structure setup
+- ✅ Next.js 14 App Router configuration
+- ✅ Tailwind CSS v4 integration
+- ✅ Framer Motion animations
+- ✅ Landing page component with scroll interactions
+- ✅ Typography and spacing matching original design
+- ✅ Responsive layout for all screen sizes
+- ✅ PM2 configuration for process management
+
+**Current Functional URIs:**
+- `/` - Landing page with hero section and archive preview
+  - Displays "mni archive" branding
+  - Shows "Archive #01" content with description
+  - Smooth scroll animations using Framer Motion
+  - "Coming Soon" interactive badge
 
 **Not Yet Implemented:**
-- Archive content management
-- API routes
+- Archive detail pages for individual items
+- Archive content management system
+- API routes for data fetching
 - Database integration
 - User authentication
-- Content CRUD operations
+- Admin panel for content management
+- Search and filter functionality
+- Multiple archive collections
 
 ## 🔮 Next Steps
 
-1. **Design archive content structure** - Define data models for archived items
-2. **Create archive listing page** - Display archived items in a grid/list
-3. **Add detail pages** - Individual archive item views
-4. **Implement API routes** - Backend logic for content management
-5. **Add search/filter** - Help users find archived content
-6. **Integrate database** - Persistent storage (Supabase, MongoDB, etc.)
+1. **Create archive detail pages** - Individual pages for each archive item
+2. **Add archive grid/list view** - Display multiple archive items
+3. **Implement content CMS** - Manage archive content dynamically
+4. **Add API routes** - Backend logic for content management
+5. **Integrate database** - Persistent storage (Supabase, Prisma + PostgreSQL, etc.)
+6. **Add authentication** - User login and permissions
+7. **Implement search** - Help users find archived content
+8. **Add admin panel** - Content management interface
 
 ## 📄 License
 
