@@ -1,117 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import MusicCard from "@/components/MusicCard";
 
 const mockMusic = [
   {
     _id: "1",
+    slug: "lovely-chaos",
     title: "Lovely Chaos",
     coverImage: "/mni-artwork-sample.png",
-    duration: "3:42",
-    category: "single",
+    duration: "3:45",
+    category: "Single",
+    description: "A spontaneous track capturing the chaotic yet lovely essence of everyday dreams.",
+    lyrics: "Sample lyrics for lovely chaos...",
+    createdAt: "2026-01-28",
   },
   {
     _id: "2",
+    slug: "moonlight-dreams",
     title: "Moonlight Dreams",
     coverImage: "/mni-artwork-sample.png",
-    duration: "4:15",
-    category: "album",
+    duration: "4:12",
+    category: "Album Track",
+    description: "Dreamy melodies under the moonlight.",
+    lyrics: "Sample lyrics for moonlight dreams...",
+    createdAt: "2026-01-25",
   },
   {
     _id: "3",
+    slug: "city-lights",
     title: "City Lights",
     coverImage: "/mni-artwork-sample.png",
-    duration: "3:28",
-    category: "single",
+    duration: "3:58",
+    category: "Single",
+    description: "Urban vibes and city nightlife.",
+    lyrics: "Sample lyrics for city lights...",
+    createdAt: "2026-01-20",
   },
   {
     _id: "4",
+    slug: "midnight-melody",
     title: "Midnight Melody",
     coverImage: "/mni-artwork-sample.png",
-    duration: "5:02",
-    category: "album",
+    duration: "4:30",
+    category: "EP",
+    description: "Late night melodies for deep thoughts.",
+    lyrics: "Sample lyrics for midnight melody...",
+    createdAt: "2026-01-15",
   },
   {
     _id: "5",
+    slug: "sunrise-vibe",
     title: "Sunrise Vibe",
     coverImage: "/mni-artwork-sample.png",
-    duration: "3:55",
-    category: "ep",
+    duration: "3:22",
+    category: "Single",
+    description: "Morning energy and positive vibes.",
+    lyrics: "Sample lyrics for sunrise vibe...",
+    createdAt: "2026-01-10",
   },
   {
     _id: "6",
+    slug: "urban-soul",
     title: "Urban Soul",
     coverImage: "/mni-artwork-sample.png",
-    duration: "4:20",
-    category: "single",
+    duration: "4:05",
+    category: "Album Track",
+    description: "Soulful sounds from the urban jungle.",
+    lyrics: "Sample lyrics for urban soul...",
+    createdAt: "2026-01-05",
   },
 ];
 
 export default function MusicPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <main className="min-h-screen bg-black text-white">
-      <motion.header
-        initial={mounted ? { opacity: 0, y: -20 } : {}}
-        animate={mounted ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="border-b border-white/10 px-6 py-8 md:px-12 md:py-12"
-      >
-        <motion.h1
-          initial={mounted ? { opacity: 0 } : {}}
-          animate={mounted ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl font-light tracking-wide md:text-6xl"
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Music
-        </motion.h1>
-        <motion.p
-          initial={mounted ? { opacity: 0 } : {}}
-          animate={mounted ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-4 text-white/70"
-        >
-          Sounds from the chaotic yet lovely universe
-        </motion.p>
-      </motion.header>
+          <Link
+            href="/"
+            className="inline-block mb-8 text-sm hover:opacity-60 transition-opacity"
+          >
+            ← BACK TO HOME
+          </Link>
+          <h1 className="text-5xl sm:text-6xl font-bold mb-4">Music</h1>
+          <p className="text-gray-400 text-lg mb-12">
+            Collection of tracks and melodies
+          </p>
+        </motion.div>
 
-      <section className="px-6 py-12 md:px-12 md:py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockMusic.map((music, index) => (
-            <motion.div
-              key={music._id}
-              initial={mounted ? { opacity: 0, y: 50 } : {}}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="relative aspect-square overflow-hidden border border-white/10 bg-gray-900">
-                <Image
-                  src={music.coverImage}
-                  alt={music.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute right-4 top-4 border border-white/20 bg-black/80 px-3 py-1 text-xs">
-                  {music.category}
-                </div>
-              </div>
-              <div className="mt-3">
-                <h3 className="text-base font-light">{music.title}</h3>
-                <p className="mt-1 text-sm text-gray-500">{music.duration}</p>
-              </div>
-            </motion.div>
+            <MusicCard key={music._id} music={music} index={index} />
           ))}
         </div>
-      </section>
-    </main>
+
+        <div className="text-center text-gray-500 text-sm mt-16">
+          © 2026 MNI Archive
+        </div>
+      </div>
+    </div>
   );
 }

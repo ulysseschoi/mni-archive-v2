@@ -1,112 +1,97 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import WritingCard from "@/components/WritingCard";
 
 const mockWritings = [
   {
     _id: "1",
+    slug: "thoughts-on-creativity",
     title: "Thoughts on Creativity",
-    excerpt: "창의성에 대한 생각들. 완벽하지 않아도 괜찮다는 것, 혼돈 속에서도 아름다움을 찾을 수 있다는 것에 대하여.",
-    category: "essay",
-    readTime: "5 min read",
+    excerpt: "Some random thoughts about the creative process and finding inspiration in everyday chaos.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Essay",
+    publishedAt: "2026-01-28",
   },
   {
     _id: "2",
+    slug: "midnight-poetry",
     title: "Midnight Poetry",
-    excerpt: "한밤중에 쓴 시. 달빛 아래서 펼쳐지는 생각의 조각들을 모았습니다.",
-    category: "poetry",
-    readTime: "3 min read",
+    excerpt: "Late night verses written under the stars.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Poetry",
+    publishedAt: "2026-01-25",
   },
   {
     _id: "3",
+    slug: "my-creative-journey",
     title: "My Creative Journey",
-    excerpt: "음악과 그림, 그리고 글쓰기를 통해 나를 표현하기까지의 여정을 돌아봅니다.",
-    category: "personal",
-    readTime: "8 min read",
+    excerpt: "A reflection on the path that led me here.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Personal",
+    publishedAt: "2026-01-20",
   },
   {
     _id: "4",
+    slug: "chaos-and-beauty",
     title: "Chaos and Beauty",
-    excerpt: "혼돈과 아름다움은 공존할 수 있을까? 일상 속에서 발견한 작은 깨달음.",
-    category: "essay",
-    readTime: "6 min read",
+    excerpt: "Finding beauty in the chaotic moments of life.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Essay",
+    publishedAt: "2026-01-15",
   },
   {
     _id: "5",
+    slug: "letters-to-myself",
     title: "Letters to Myself",
-    excerpt: "과거의 나에게 쓰는 편지. 지나온 시간들을 돌아보며.",
-    category: "personal",
-    readTime: "4 min read",
+    excerpt: "Notes and reminders for future me.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Personal",
+    publishedAt: "2026-01-10",
   },
   {
     _id: "6",
+    slug: "art-and-life",
     title: "Art and Life",
-    excerpt: "예술과 삶은 어떻게 연결되어 있을까? 창작과 일상의 경계에서.",
-    category: "essay",
-    readTime: "7 min read",
+    excerpt: "Exploring the intersection of art and everyday existence.",
+    coverImage: "/mni-artwork-sample.png",
+    category: "Essay",
+    publishedAt: "2026-01-05",
   },
 ];
 
 export default function WritingsPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <main className="min-h-screen bg-black text-white">
-      <motion.header
-        initial={mounted ? { opacity: 0, y: -20 } : {}}
-        animate={mounted ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="border-b border-white/10 px-6 py-8 md:px-12 md:py-12"
-      >
-        <motion.h1
-          initial={mounted ? { opacity: 0 } : {}}
-          animate={mounted ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl font-light tracking-wide md:text-6xl"
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Writings
-        </motion.h1>
-        <motion.p
-          initial={mounted ? { opacity: 0 } : {}}
-          animate={mounted ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-4 text-white/70"
-        >
-          Thoughts, poems, and stories from the creative mind
-        </motion.p>
-      </motion.header>
+          <Link
+            href="/"
+            className="inline-block mb-8 text-sm hover:opacity-60 transition-opacity"
+          >
+            ← BACK TO HOME
+          </Link>
+          <h1 className="text-5xl sm:text-6xl font-bold mb-4">Writings</h1>
+          <p className="text-gray-400 text-lg mb-12">
+            Essays, poetry, and thoughts
+          </p>
+        </motion.div>
 
-      <section className="px-6 py-12 md:px-12 md:py-16">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockWritings.map((writing, index) => (
-            <motion.div
-              key={writing._id}
-              initial={mounted ? { opacity: 0, y: 50 } : {}}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group border border-white/10 p-6 transition-all hover:border-white/30"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <h3 className="mb-2 text-xl font-light">{writing.title}</h3>
-                  <p className="mb-4 text-sm text-gray-400">{writing.excerpt}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
-                    <span className="uppercase tracking-wider">{writing.category}</span>
-                    <span>•</span>
-                    <span>{writing.readTime}</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <WritingCard key={writing._id} writing={writing} index={index} />
           ))}
         </div>
-      </section>
-    </main>
+
+        <div className="text-center text-gray-500 text-sm mt-16">
+          © 2026 MNI Archive
+        </div>
+      </div>
+    </div>
   );
 }
