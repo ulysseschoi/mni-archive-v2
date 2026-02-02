@@ -27,6 +27,8 @@ export default function ArtworksClient({
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     setMounted(true);
@@ -49,6 +51,19 @@ export default function ArtworksClient({
 
     return matchesSearch && matchesCategory;
   });
+
+  // Pagination
+  const totalPages = Math.ceil(filteredArtworks.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedArtworks = filteredArtworks.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -186,7 +201,7 @@ export default function ArtworksClient({
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredArtworks.map((artwork, index) => {
+            {paginatedArtworks.map((artwork, index) => {
               const slug =
                 typeof artwork.slug === "string"
                   ? artwork.slug
@@ -247,6 +262,55 @@ export default function ArtworksClient({
                 Clear filters
               </button>
             )}
+          </motion.div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12 flex items-center justify-center gap-2"
+          >
+            {/* Previous Button */}
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+              className="rounded-lg border border-white/30 px-4 py-2 text-sm transition-all hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              ← Previous
+            </button>
+
+            {/* Page Numbers */}
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`h-10 w-10 rounded-lg text-sm transition-all ${
+                      currentPage === page
+                        ? "bg-white text-black"
+                        : "border border-white/30 hover:bg-white/10"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
+              disabled={currentPage === totalPages}
+              className="rounded-lg border border-white/30 px-4 py-2 text-sm transition-all hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              Next →
+            </button>
           </motion.div>
         )}
       </section>
