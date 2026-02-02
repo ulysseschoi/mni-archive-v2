@@ -7,13 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "seed-data": "tsx scripts/seed-data.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sanity/client": "^7.14.1",
+    "@sanity/image-url": "^2.0.3",
     "framer-motion": "^12.29.2",
     "next": "^16.1.6",
     "react": "^19.2.4",
@@ -31,6 +34,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.18",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
