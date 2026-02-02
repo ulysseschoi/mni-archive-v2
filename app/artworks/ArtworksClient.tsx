@@ -15,72 +15,61 @@ interface Artwork {
   featured?: boolean;
 }
 
-// Mock data
+// Mock data - 미노이의 실제 작품들
 const mockArtworks = [
   {
     _id: "1",
-    title: "Chaotic Dreams",
-    slug: { current: "chaotic-dreams" },
-    image: "/mni-artwork-sample.png",
+    title: "B의 집",
+    slug: { current: "b-house" },
+    image: "https://www.genspark.ai/api/files/s/5cNVQar2",
     description:
-      "A spontaneous doodle capturing the chaotic yet lovely essence of everyday dreams. Drawn in one sitting with no regrets.",
+      "삼각 지붕의 집 안에 자리한 'B'의 매력적인 모습. 심플하면서도 재미있는 그림이에요.",
     category: "doodle",
-    createdAt: "2026-01-28",
+    createdAt: "2026-02-02",
     featured: true,
   },
   {
     _id: "2",
-    title: "Black Briar Skater",
-    slug: { current: "black-briar-skater" },
-    image: "/mni-artwork-sample.png",
+    title: "고양이 친구",
+    slug: { current: "cat-friend" },
+    image: "https://www.genspark.ai/api/files/s/VVI9frn6",
     description:
-      "A happy skateboarder living their best life. Simple lines, pure vibes.",
-    category: "character",
-    createdAt: "2026-01-25",
+      "웃는 얼굴의 고양이 같은 동물이에요. 기분 좋고 발랄한 분위기를 느껴보세요.",
+    category: "doodle",
+    createdAt: "2026-02-01",
     featured: false,
   },
   {
     _id: "3",
-    title: "Curious Cat",
-    slug: { current: "curious-cat" },
-    image: "/mni-artwork-sample.png",
+    title: "스케이트보드 타는 친구",
+    slug: { current: "black-briar-skater" },
+    image: "https://www.genspark.ai/api/files/s/vjgc9jng",
     description:
-      "A cat with big eyes wondering about the universe. Aren't we all?",
-    category: "doodle",
-    createdAt: "2026-01-22",
+      "스케이트보드를 타고 자유를 만끽하는 막대기 인간이에요. 'Black briar'라는 글씨가 인상적이에요.",
+    category: "character",
+    createdAt: "2026-01-31",
     featured: true,
   },
   {
     _id: "4",
-    title: "House B",
-    slug: { current: "house-b" },
-    image: "/mni-artwork-sample.png",
+    title: "열린 상자",
+    slug: { current: "open-box" },
+    image: "https://www.genspark.ai/api/files/s/GGUund5D",
     description:
-      "A simple house with a big 'B'. Maybe it stands for 'Beautiful' or 'Brave'. You decide.",
+      "복잡한 무언가가 펼쳐진 열린 상자입니다. 비밀과 신비로움이 가득해요.",
     category: "sketch",
-    createdAt: "2026-01-20",
+    createdAt: "2026-01-30",
     featured: false,
   },
   {
     _id: "5",
-    title: "Urban Building",
-    slug: { current: "urban-building" },
-    image: "/mni-artwork-sample.png",
+    title: "형상의 미로",
+    slug: { current: "shape-maze" },
+    image: "https://www.genspark.ai/api/files/s/7QN2u8k5",
     description:
-      "A tall building with windows. Each window tells a story we'll never know.",
-    category: "sketch",
-    createdAt: "2026-01-18",
-    featured: false,
-  },
-  {
-    _id: "6",
-    title: "Mystery Box",
-    slug: { current: "mystery-box" },
-    image: "/mni-artwork-sample.png",
-    description:
-      "An open box with wild lines coming out. Is it chaos? Is it creativity? Yes.",
+      "다양한 기하학적 모양과 심볼로 가득한 격자무늬입니다. 질서와 패턴이 느껴져요.",
     category: "illustration",
-    createdAt: "2026-01-15",
+    createdAt: "2026-01-29",
     featured: true,
   },
 ];
