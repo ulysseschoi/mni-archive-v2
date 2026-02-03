@@ -80,12 +80,13 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
           {step === 3 && (
             <div key="final" className="space-y-20">
               <motion.h1
-                initial={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: -30 }}
                 transition={{ 
                   duration: 1.2,
                   ease: [0.19, 1, 0.22, 1],
-                  y: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
+                  opacity: { duration: 0.8, ease: "easeInOut" },
+                  y: { duration: 1.2, ease: [0.19, 1, 0.22, 1], delay: 0.3 }
                 }}
                 className="text-4xl sm:text-5xl font-bold tracking-[0.3em] text-black uppercase"
               >
@@ -97,7 +98,8 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
                   duration: 1.2,
-                  ease: [0.19, 1, 0.22, 1], // Custom bezier for buttery smooth entrance
+                  delay: 0.4,
+                  ease: [0.19, 1, 0.22, 1],
                   opacity: { duration: 1.0, ease: "easeOut" },
                   scale: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
                 }}
