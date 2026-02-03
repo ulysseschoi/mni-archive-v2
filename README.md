@@ -36,6 +36,7 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ### 🏠 Core Pages
 - ✅ **Landing Page** - Hero section with scroll animations
+- ✅ **Drops** (/drops) - Limited edition drops with countdown timer & email notifications
 - ✅ **Artworks Archive** (/artworks) - 5 real Meenoi artworks with search/filter/pagination
 - ✅ **Music Archive** (/music) - 6 tracks with cover images
 - ✅ **Videos Archive** (/videos) - 6 videos with thumbnails
@@ -43,6 +44,7 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 - ⏳ **Detail Pages** - Coming soon (dynamic routing)
 
 ### 🎯 Advanced Features
+- ✅ **Drops System** - Limited edition countdown, email notifications, past drops archive
 - ✅ **Global Navigation** - Fixed top bar with responsive design
 - ✅ **Search & Filter** - Real-time search across title/description (Artworks)
 - ✅ **Category Filter** - Dynamic category buttons
@@ -59,10 +61,14 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ### Main Routes
 - `/` - Landing page
+- `/drops` - Limited edition drops with countdown & email notifications
 - `/artworks` - Artworks grid with search/filter/pagination
 - `/music` - Music tracks list (6 items)
 - `/videos` - Video gallery (6 items)
 - `/writings` - Blog posts list (6 items)
+
+### API Routes
+- `/api/drops/notify` - Email notification signup (POST)
 
 ### Query Parameters (Artworks)
 - `/artworks?category=doodle` - Filter by category
@@ -77,9 +83,14 @@ Detail pages (`/artworks/[slug]`, `/music/[slug]`, etc.) are planned for future 
 ```
 mni-archive-v2/
 ├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   └── drops/         # Drops API endpoints
+│   │       └── notify/    # Email notification signup
 │   ├── artworks/          # Artwork pages
 │   │   ├── page.tsx       # Server component with SEO
 │   │   └── ArtworksClient.tsx  # Client component with search/filter
+│   ├── drops/             # Drops pages
+│   │   └── page.tsx       # Client component with countdown
 │   ├── music/             # Music pages
 │   │   └── page.tsx       # Client component with grid layout
 │   ├── videos/            # Video pages
@@ -107,6 +118,7 @@ mni-archive-v2/
 ├── scripts/seed-data.ts   # Sample data generator
 ├── public/                # Static assets
 ├── CLOUDFLARE_DEPLOY.md   # Deployment guide
+├── DROPS_SETUP.md         # Drops feature setup (Supabase + SendGrid)
 ├── SANITY_INTEGRATION_GUIDE.md  # CMS setup guide
 ├── SEO_GUIDE.md           # SEO optimization guide
 └── IMAGE_OPTIMIZATION_GUIDE.md  # Image optimization guide
@@ -199,8 +211,9 @@ pm2 delete mni-archive-v2    # Remove from PM2
 - coverImage, publishedAt, category, tags
 
 ### Storage Services
-- **Current**: Real Meenoi artworks (5 pieces) + Mock data for Music/Videos/Writings
+- **Current**: Real Meenoi artworks (5 pieces) + Mock data for Music/Videos/Writings/Drops
 - **Artworks**: Using actual Genspark API image URLs
+- **Drops**: Mock countdown timer + Email collection ready (Supabase integration pending)
 - **Ready**: Sanity CMS integration (automatic fallback)
 - **Future**: Cloudflare D1/KV/R2 for edge storage
 
@@ -333,15 +346,16 @@ This is a personal archive project. For questions or suggestions, please open an
 
 ---
 
-**Last Updated**: February 2, 2026  
-**Version**: 2.2.0  
-**Status**: ✅ Production Live with Real Meenoi Artworks
+**Last Updated**: February 3, 2026  
+**Version**: 2.3.0  
+**Status**: ✅ Production Live with Drops Feature
 
 **Production URL**: https://mni-archive-v2.pages.dev
 
 **Key Achievements**:
 - ✅ 5 real Meenoi artworks deployed
-- ✅ 5/5 core pages deployed to production
+- ✅ **Drops page with countdown timer & email notifications**
+- ✅ 6/6 core pages deployed to production
 - ✅ Search/Filter/Pagination (Artworks)
 - ✅ Lightbox image gallery
 - ✅ All card components (Artwork, Music, Video, Writing)
