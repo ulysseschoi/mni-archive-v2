@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import VideoModal from "./VideoModal";
 
 interface MusicCardProps {
   music: {
@@ -12,24 +13,31 @@ interface MusicCardProps {
     coverImage: string;
     duration?: string;
     category?: string;
-    videoUrl?: string; // Add videoUrl support
+    videoUrl?: string;
+    description?: string;
+    tags?: string;
   };
   index: number;
 }
 
 export default function MusicCard({ music, index }: MusicCardProps) {
   const [mounted, setMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (music.videoUrl) {
+      setIsModalOpen(true);
+    }
+  };
+
   return (
-    <a 
-      href={music.videoUrl || `/music/${music.slug}`} 
-      target={music.videoUrl ? "_blank" : "_self"}
-      rel={music.videoUrl ? "noopener noreferrer" : undefined}
-    >
+    <>
+      <div onClick={handleClick} className="cursor-pointer">
       <motion.div
         initial={mounted ? { opacity: 0, y: 20 } : {}}
         animate={mounted ? { opacity: 1, y: 0 } : {}}
@@ -89,6 +97,19 @@ export default function MusicCard({ music, index }: MusicCardProps) {
       >
         {music.title}
       </motion.p>
-    </a>
+      </div>
+
+      {/* Video Modal */}
+      {music.videoUrl && (
+        <VideoModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          videoUrl={music.videoUrl}
+          title={music.title}
+          description={music.description}
+          tags={music.tags}
+        />
+      )}
+    </>
   );
 }
