@@ -31,7 +31,7 @@ export default function Navigation() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         {/* Logo */}
         <Link
-          href="/"
+          href="/?intro=true"
           className="text-xl font-light tracking-wider transition-colors hover:text-white/80"
         >
           MNI
