@@ -11,15 +11,16 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    // Step 0: Mee (0s)
-    // Step 1: Hide Mee, Show mni acv (1.5s)
-    // Step 2: Hide mni acv, Show MNI ARCHIVE (3s)
-    // Step 3: Show START ! (4.5s)
+    // Timing matching reference site:
+    // Step 0: Mee (0s - 2s)
+    // Step 1: mni acv (2s - 4s)
+    // Step 2: MNI ARCHIVE (4s - 5.5s)
+    // Step 3: START ! (5.5s+)
 
     const timers = [
-      setTimeout(() => setStep(1), 1500),  // Hide Mee, Show mni acv
-      setTimeout(() => setStep(2), 3000),  // Hide mni acv, Show MNI ARCHIVE
-      setTimeout(() => setStep(3), 4500),  // Show START !
+      setTimeout(() => setStep(1), 2000),   // Mee → mni acv (2s)
+      setTimeout(() => setStep(2), 4000),   // mni acv → MNI ARCHIVE (2s)
+      setTimeout(() => setStep(3), 5500),   // + START ! (1.5s)
     ];
 
     return () => timers.forEach(clearTimeout);
@@ -34,66 +35,66 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
     >
       <div className="text-center">
         <AnimatePresence mode="wait">
-          {/* Step 0-1: Mee */}
+          {/* Step 0: Mee */}
           {step === 0 && (
             <motion.h1
               key="mee"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-light tracking-wider text-black"
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-7xl font-light tracking-wide text-black"
             >
               Mee
             </motion.h1>
           )}
 
-          {/* Step 1-2: mni acv */}
+          {/* Step 1: mni acv */}
           {step === 1 && (
             <motion.h1
               key="mni-acv"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-light tracking-wider text-black"
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-7xl font-light tracking-wide text-black"
             >
               mni acv
             </motion.h1>
           )}
 
-          {/* Step 2-3: MNI ARCHIVE */}
+          {/* Step 2: MNI ARCHIVE */}
           {step === 2 && (
             <motion.h1
               key="mni-archive"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-light tracking-wider text-black uppercase"
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl font-light tracking-[0.3em] text-black uppercase"
             >
               MNI ARCHIVE
             </motion.h1>
           )}
 
-          {/* Step 3: MNI ARCHIVE remains, START ! appears below */}
+          {/* Step 3: MNI ARCHIVE + START ! */}
           {step === 3 && (
-            <div key="final">
+            <div key="final" className="space-y-20">
               <motion.h1
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
-                className="text-6xl md:text-8xl font-light tracking-wider text-black uppercase mb-12"
+                className="text-4xl sm:text-5xl font-light tracking-[0.3em] text-black uppercase"
               >
                 MNI ARCHIVE
               </motion.h1>
 
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
                 onClick={onComplete}
-                className="text-2xl md:text-3xl font-light tracking-wider text-black hover:text-gray-400 transition-colors duration-300"
+                className="text-xl sm:text-2xl font-light tracking-wide text-black hover:text-gray-400 transition-colors duration-300 cursor-pointer"
               >
-                Start !
+                START !
               </motion.button>
             </div>
           )}
