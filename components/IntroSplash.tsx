@@ -116,8 +116,13 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
               </motion.h1>
 
               <motion.button
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 1, y: -80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  ease: [0.19, 1, 0.22, 1],
+                  y: { duration: 0.8, ease: [0.19, 1, 0.22, 1] }
+                }}
                 onClick={onComplete}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.95 }}
