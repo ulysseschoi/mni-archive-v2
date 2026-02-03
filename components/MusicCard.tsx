@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 
 interface MusicCardProps {
@@ -13,6 +12,7 @@ interface MusicCardProps {
     coverImage: string;
     duration?: string;
     category?: string;
+    videoUrl?: string; // Add videoUrl support
   };
   index: number;
 }
@@ -25,7 +25,11 @@ export default function MusicCard({ music, index }: MusicCardProps) {
   }, []);
 
   return (
-    <Link href={`/music/${music.slug}`}>
+    <a 
+      href={music.videoUrl || `/music/${music.slug}`} 
+      target={music.videoUrl ? "_blank" : "_self"}
+      rel={music.videoUrl ? "noopener noreferrer" : undefined}
+    >
       <motion.div
         initial={mounted ? { opacity: 0, y: 20 } : {}}
         animate={mounted ? { opacity: 1, y: 0 } : {}}
@@ -85,6 +89,6 @@ export default function MusicCard({ music, index }: MusicCardProps) {
       >
         {music.title}
       </motion.p>
-    </Link>
+    </a>
   );
 }
