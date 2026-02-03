@@ -280,7 +280,9 @@ export default function DropsPage() {
           </div>
         </motion.section>
 
-        {/* Past Drops Archive */}
+        {/* Past Drops Archive - HIDDEN FOR FUTURE USE */}
+        {/* Uncomment when ready to show past drops */}
+        {/* 
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -326,6 +328,7 @@ export default function DropsPage() {
             ))}
           </div>
         </motion.section>
+        */}
       </div>
     </main>
   );

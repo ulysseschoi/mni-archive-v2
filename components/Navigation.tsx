@@ -11,8 +11,9 @@ const navItems = [
   { name: "Shop", path: "/shop" },
   { name: "Artworks", path: "/artworks" },
   { name: "Music", path: "/music" },
-  { name: "Videos", path: "/videos" },
-  { name: "Writings", path: "/writings" },
+  // Hidden for future use
+  // { name: "Videos", path: "/videos" },
+  // { name: "Writings", path: "/writings" },
 ];
 
 export default function Navigation() {
