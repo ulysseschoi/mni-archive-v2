@@ -67,7 +67,7 @@ export default function VideoModal({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute right-2 top-2 md:-right-4 md:-top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110"
+                className="absolute right-2 top-2 md:right-4 md:top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-lg transition-transform hover:scale-110"
                 aria-label="Close"
               >
                 <svg

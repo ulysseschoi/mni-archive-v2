@@ -55,7 +55,7 @@ export default function Lightbox({
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.1 }}
             onClick={onClose}
-            className="absolute right-4 top-8 md:top-6 z-10 rounded-full border border-white/30 bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10"
+            className="absolute right-4 top-12 md:top-8 lg:top-6 z-10 rounded-full border border-white/30 bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10 shadow-lg"
           >
             <svg
               className="h-6 w-6"
