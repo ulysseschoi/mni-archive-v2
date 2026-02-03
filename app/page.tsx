@@ -32,7 +32,8 @@ function HomeContent() {
       </AnimatePresence>
 
       {/* Original Home Content */}
-      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+      {!showIntro && (
+        <main className="min-h-screen bg-black text-white flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,6 +93,7 @@ function HomeContent() {
           </motion.p>
         </motion.div>
       </main>
+      )}
     </>
   );
 }
@@ -100,17 +102,7 @@ export default function Home() {
   return (
     <Suspense fallback={
       <main className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center px-6">
-          <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-6">
-            MNI
-          </h1>
-          <p className="text-xl md:text-2xl font-light text-gray-400 tracking-wide">
-            The chaotic yet lovely universe of Meenoi
-          </p>
-          <p className="mt-8 text-sm text-gray-600">
-            Welcome to the first archive.
-          </p>
-        </div>
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white/20 border-t-white"></div>
       </main>
     }>
       <HomeContent />
