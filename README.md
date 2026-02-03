@@ -27,6 +27,9 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 - **Styling**: Tailwind CSS v4
 - **Animations**: Framer Motion
 - **CMS**: Sanity (Headless CMS with mock data fallback)
+- **Auth**: Supabase Auth (Email/Password + OAuth)
+- **E-commerce**: Shopify Storefront API (Headless Commerce)
+- **Database**: Supabase (PostgreSQL with Row Level Security)
 - **SEO**: Comprehensive meta tags, Open Graph, Twitter Card
 - **Optimization**: Sanity Image Pipeline (thumbnail, high-res, responsive)
 - **Linting**: ESLint + Prettier
@@ -37,6 +40,9 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 ### 🏠 Core Pages
 - ✅ **Landing Page** - Hero section with scroll animations
 - ✅ **Drops** (/drops) - Limited edition drops with countdown timer & email notifications
+- ✅ **Shop** (/shop) - Shopify Headless Commerce integration (Coming Soon)
+- ✅ **Auth System** (/auth) - Supabase authentication with social login
+- ✅ **Profile** (/profile) - User dashboard with orders and membership
 - ✅ **Artworks Archive** (/artworks) - 5 real Meenoi artworks with search/filter/pagination
 - ✅ **Music Archive** (/music) - 6 tracks with cover images
 - ✅ **Videos Archive** (/videos) - 6 videos with thumbnails
@@ -45,7 +51,10 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ### 🎯 Advanced Features
 - ✅ **Drops System** - Limited edition countdown, email notifications, past drops archive
-- ✅ **Global Navigation** - Fixed top bar with responsive design
+- ✅ **Auth System** - Email/password + Google/Apple social login with Supabase
+- ✅ **User Profiles** - Account info, order history, membership tiers
+- ✅ **Protected Routes** - Auto-redirect to /auth for logged-out users
+- ✅ **Global Navigation** - Fixed top bar with Sign In/Profile links
 - ✅ **Search & Filter** - Real-time search across title/description (Artworks)
 - ✅ **Category Filter** - Dynamic category buttons
 - ✅ **Pagination** - 6 items per page with Previous/Next controls
@@ -62,6 +71,10 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 ### Main Routes
 - `/` - Landing page
 - `/drops` - Limited edition drops with countdown & email notifications
+- `/shop` - Shopify product catalog (Coming Soon)
+- `/auth` - Sign in / Sign up with email or social login
+- `/auth/callback` - OAuth callback handler
+- `/profile` - User dashboard (protected route)
 - `/artworks` - Artworks grid with search/filter/pagination
 - `/music` - Music tracks list (6 items)
 - `/videos` - Video gallery (6 items)
