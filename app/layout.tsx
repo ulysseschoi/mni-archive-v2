@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -22,10 +23,12 @@ export default function RootLayout({
   return (
     <html lang="ko" className={inter.variable}>
       <body className="font-sans">
-        <Navigation />
-        <div className="pt-16">
-          {children}
-        </div>
+        <AuthProvider>
+          <Navigation />
+          <div className="pt-16">
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

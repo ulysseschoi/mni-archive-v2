@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -19,6 +20,7 @@ const navItems = [
 export default function Navigation() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const { user, loading } = useAuth();
 
   useEffect(() => {
     setMounted(true);
@@ -41,33 +43,45 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.path ||
-              (item.path !== "/" && pathname.startsWith(item.path));
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.path ||
+                (item.path !== "/" && pathname.startsWith(item.path));
 
-            return (
-              <li key={item.path}>
-                <Link
-                  href={item.path}
-                  className={`relative text-sm font-light tracking-wide transition-colors ${
-                    isActive ? "text-white" : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {item.name}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 h-px w-full bg-white"
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+              return (
+                <li key={item.path}>
+                  <Link
+                    href={item.path}
+                    className={`relative text-sm font-light tracking-wide transition-colors ${
+                      isActive ? "text-white" : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute -bottom-1 left-0 h-px w-full bg-white"
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Auth Button */}
+          {!loading && (
+            <Link
+              href={user ? "/profile" : "/auth"}
+              className="text-sm font-light tracking-wide text-white/60 hover:text-white transition-colors"
+            >
+              {user ? "Profile" : "Sign In"}
+            </Link>
+          )}
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -116,6 +130,17 @@ export default function Navigation() {
               </li>
             );
           })}
+          {/* Mobile Auth Button */}
+          {!loading && (
+            <li>
+              <Link
+                href={user ? "/profile" : "/auth"}
+                className="block py-2 text-sm font-light tracking-wide text-white/60"
+              >
+                {user ? "Profile" : "Sign In"}
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </motion.nav>
