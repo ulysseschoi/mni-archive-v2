@@ -64,27 +64,6 @@ export default function VideoModal({
               className="relative w-full max-w-5xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
-              <button
-                onClick={onClose}
-                className="absolute right-2 top-2 md:right-4 md:top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-lg transition-transform hover:scale-110"
-                aria-label="Close"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
               {/* Video Container */}
               <div className="overflow-hidden rounded-lg bg-black">
                 {/* Video Player */}
