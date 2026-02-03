@@ -37,7 +37,7 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           href="/?intro=true"
-          className="text-xl font-light tracking-wider transition-colors hover:text-white/80"
+          className="text-xl font-light tracking-wider link-hover"
         >
           MNI
         </Link>
@@ -54,7 +54,7 @@ export default function Navigation() {
                 <li key={item.path}>
                   <Link
                     href={item.path}
-                    className={`relative text-sm font-light tracking-wide transition-colors ${
+                    className={`relative text-sm font-light tracking-wide link-hover ${
                       isActive ? "text-white" : "text-white/60 hover:text-white"
                     }`}
                   >
@@ -63,7 +63,7 @@ export default function Navigation() {
                       <motion.div
                         layoutId="activeNav"
                         className="absolute -bottom-1 left-0 h-px w-full bg-white"
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                       />
                     )}
                   </Link>
@@ -76,7 +76,7 @@ export default function Navigation() {
           {!loading && (
             <Link
               href={user ? "/profile" : "/auth"}
-              className="text-sm font-light tracking-wide text-white/60 hover:text-white transition-colors"
+              className="text-sm font-light tracking-wide text-white/60 hover:text-white link-hover"
             >
               {user ? "Profile" : "Sign In"}
             </Link>

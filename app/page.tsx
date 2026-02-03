@@ -2,8 +2,9 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import IntroSplash from "@/components/IntroSplash";
+import Link from "next/link";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -32,17 +33,64 @@ function HomeContent() {
 
       {/* Original Home Content */}
       <main className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center px-6">
-          <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center px-6"
+        >
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-6xl md:text-8xl font-light tracking-wider mb-6"
+          >
             MNI
-          </h1>
-          <p className="text-xl md:text-2xl font-light text-gray-400 tracking-wide">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl md:text-2xl font-light text-gray-400 tracking-wide mb-12"
+          >
             The chaotic yet lovely universe of Meenoi
-          </p>
-          <p className="mt-8 text-sm text-gray-600">
+          </motion.p>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            {[
+              { name: "Drops", path: "/drops" },
+              { name: "Shop", path: "/shop" },
+              { name: "Artworks", path: "/artworks" },
+              { name: "Music", path: "/music" },
+            ].map((item, index) => (
+              <Link key={item.path} href={item.path}>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="px-6 py-2 border border-white/20 font-light tracking-wider hover:bg-white/5 transition-all duration-300"
+                >
+                  {item.name}
+                </motion.button>
+              </Link>
+            ))}
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-12 text-sm text-gray-600"
+          >
             Welcome to the first archive.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </main>
     </>
   );
