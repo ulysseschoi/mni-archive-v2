@@ -35,7 +35,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
     >
       <div className="text-center">
         <AnimatePresence mode="wait">
-          {/* Step 0: Mee */}
+          {/* Step 0: mee */}
           {step === 0 && (
             <motion.h1
               key="mee"
@@ -43,9 +43,9 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl md:text-7xl font-light tracking-wide text-black"
+              className="text-3xl md:text-5xl font-light tracking-wide text-black"
             >
-              Mee
+              mee
             </motion.h1>
           )}
 
@@ -80,8 +80,13 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
           {step === 3 && (
             <div key="final" className="space-y-20">
               <motion.h1
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: -30 }}
+                transition={{ 
+                  duration: 1.2,
+                  ease: [0.19, 1, 0.22, 1],
+                  y: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
+                }}
                 className="text-4xl sm:text-5xl font-bold tracking-[0.3em] text-black uppercase"
               >
                 MNI ARCHIVE
