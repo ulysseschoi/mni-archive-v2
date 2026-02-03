@@ -1,11 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
-  body {
+  html {
     background-color: #000000;
     color: #ffffff;
+  }
+  
+  body {
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -46,21 +48,6 @@
     opacity: 0.8;
   }
 
-  /* Input Focus States */
-  .input-focus {
-    transition: all 300ms ease-out;
-  }
-
-  .input-focus:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), 0 0 0 4px #000000;
-  }
-
-  /* Smooth Transitions */
-  .transition-smooth {
-    transition: all 300ms ease-out;
-  }
-
   /* Image Hover Effects */
   .image-hover {
     transition: transform 500ms ease-out;
@@ -78,6 +65,11 @@
   .border-glow:hover {
     border-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition: all 300ms ease-out;
   }
 
   /* Fade In Animation */
@@ -98,8 +90,7 @@
 
   /* Pulse Animation */
   @keyframes pulse-subtle {
-    0%,
-    100% {
+    0%, 100% {
       opacity: 1;
     }
     50% {
@@ -146,4 +137,3 @@
     background: rgba(255, 255, 255, 0.3);
   }
 }
-
