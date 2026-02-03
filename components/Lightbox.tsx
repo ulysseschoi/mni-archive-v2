@@ -55,7 +55,7 @@ export default function Lightbox({
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.1 }}
             onClick={onClose}
-            className="absolute right-4 top-4 z-10 rounded-full border border-white/30 bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10"
+            className="absolute right-4 top-8 md:top-6 z-10 rounded-full border border-white/30 bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10"
           >
             <svg
               className="h-6 w-6"
@@ -78,7 +78,7 @@ export default function Lightbox({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] max-w-7xl"
+            className="relative flex max-h-[90vh] max-w-7xl flex-col items-center"
           >
             <div className="relative">
               <Image
@@ -86,7 +86,7 @@ export default function Lightbox({
                 alt={title}
                 width={1200}
                 height={1200}
-                className="h-auto max-h-[80vh] w-auto rounded-lg object-contain"
+                className="h-auto max-h-[70vh] w-auto rounded-lg object-contain"
                 priority
               />
             </div>
@@ -96,7 +96,7 @@ export default function Lightbox({
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mt-6 text-center"
+              className="mt-4 mb-12 text-center px-4"
             >
               <h2 className="text-2xl font-light text-white">{title}</h2>
               {description && (
@@ -110,7 +110,7 @@ export default function Lightbox({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-white/50"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs md:text-sm text-white/50"
           >
             Press ESC or click outside to close
           </motion.div>
