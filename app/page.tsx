@@ -62,7 +62,7 @@ function HomeContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-4 max-w-md md:max-w-none mx-auto"
           >
             {[
               { name: "Drops", path: "/drops" },
@@ -75,7 +75,7 @@ function HomeContent() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="px-6 py-2 border border-white/20 font-light tracking-wider hover:bg-white/5 transition-all duration-300"
+                  className="w-full md:w-auto px-6 py-3 border border-white/20 font-light tracking-wider hover:bg-white/5 transition-all duration-300"
                 >
                   {item.name}
                 </motion.button>
