@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export', // Enable static export for Cloudflare Pages
+  // NOTE: 'output: export' is disabled for local development
+  // Enable for Cloudflare Pages deployment when needed
+  // However, Cloudflare Pages now supports Next.js server mode!
   typescript: {
     ignoreBuildErrors: true, // Ignore errors for initial deployment
   },
@@ -20,7 +22,6 @@ const nextConfig = {
       },
     ],
   },
-  // CORS headers removed - not supported in static export
 };
 
 export default nextConfig;
