@@ -4,7 +4,13 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 
 ## 🌐 Live Demo
 
-**Production URL**: https://mni-archive-v2.pages.dev
+**Production URL**: https://mniarchive.com (Custom Domain)
+
+**Alternative URLs**: 
+- https://www.mniarchive.com
+- https://mni-archive-v2.pages.dev (Cloudflare Pages)
+
+**Sandbox Testing URL**: https://3000-ie7ghbqy55dwsfazfpe0l-b32ec7bb.sandbox.novita.ai
 
 **GitHub Repository**: https://github.com/ulysseschoi/mni-archive-v2
 
@@ -64,7 +70,8 @@ A minimalist Next.js 14 archive project with a pure black and white aesthetic, i
 - ✅ **Image Optimization** - Sanity CDN with quality/format optimization
 - ✅ **Framer Motion Animations** - Smooth page transitions
 - ✅ **Mobile Responsive** - Hamburger menu and mobile-optimized layouts
-- ✅ **Static Export** - Ready for Cloudflare Pages deployment
+- ✅ **Server Rendering** - Full Next.js SSR support on Cloudflare Pages
+- ✅ **Custom Domain** - Connected to mniarchive.com with automatic intro animation
 
 ## 📋 Functional Entry URIs
 
