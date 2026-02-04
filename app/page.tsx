@@ -9,11 +9,29 @@ import Link from "next/link";
 function HomeContent() {
   const searchParams = useSearchParams();
   const [showIntro, setShowIntro] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Only show intro if ?intro=true is in the URL
-    if (searchParams.get("intro") === "true") {
+    setMounted(true);
+    
+    // Check if intro query param is explicitly set
+    const introParam = searchParams.get("intro");
+    
+    if (introParam === "true") {
+      // Explicitly requested intro
       setShowIntro(true);
+    } else if (introParam === "false") {
+      // Explicitly skip intro
+      setShowIntro(false);
+    } else {
+      // No query param - check if first visit
+      const hasVisited = sessionStorage.getItem("hasVisitedHome");
+      
+      if (!hasVisited) {
+        // First visit in this session - show intro
+        setShowIntro(true);
+        sessionStorage.setItem("hasVisitedHome", "true");
+      }
     }
   }, [searchParams]);
 
